@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, PageContainer, PageTitle } from '@shared/ui-components';
+import { PageContainer, PageTitle } from '@shared/ui-components';
 import { useTicketStore } from '../stores/ticketStore';
 import { TicketCard } from '../components/TicketCard';
 import { Ticket, TicketStatus, User, UserRole } from '../types';
