@@ -7,14 +7,10 @@ export default defineConfig({
   plugins: [
     react(),
     federation({
-      name: 'host',
-      remotes: {
-        'crm-app': 'http://localhost:3001/assets/remoteEntry.js',
-        'inventory-app': 'http://localhost:3002/assets/remoteEntry.js',
-        'hr-app': 'http://localhost:3003/assets/remoteEntry.js',
-        'finance-app': 'http://localhost:3004/assets/remoteEntry.js',
-        'task-app': 'http://localhost:3005/assets/remoteEntry.js',
-        'health-app': 'http://localhost:3006/assets/remoteEntry.js',
+      name: 'health-app',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './App': './src/App.tsx',
       },
       shared: ['react', 'react-dom', 'react-router-dom', 'styled-components', 'zustand']
     })
@@ -22,16 +18,23 @@ export default defineConfig({
   build: {
     modulePreload: false,
     target: 'esnext',
-    minify: false,
-    cssCodeSplit: false
+    minify: 'esbuild',
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom']
+        }
+      }
+    }
   },
   server: {
-    port: 3000,
+    port: 3006,
     strictPort: true,
     cors: true
   },
   preview: {
-    port: 3000,
+    port: 3006,
     strictPort: true,
     cors: true,
     host: true

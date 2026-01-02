@@ -107,6 +107,18 @@ function App() {
                   </ProtectedModuleRoute>
                 } 
               />
+              <Route 
+                path="health/*" 
+                element={
+                  <ProtectedModuleRoute moduleId="health">
+                    <RemoteErrorBoundary remoteName="Health">
+                      <Suspense fallback={<LoadingSpinner />}>
+                        <SharedModuleLoader.HealthApp />
+                      </Suspense>
+                    </RemoteErrorBoundary>
+                  </ProtectedModuleRoute>
+                } 
+              />
             </Route>
           </Route>
         </Routes>

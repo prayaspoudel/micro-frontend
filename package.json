@@ -10,19 +10,20 @@
   "scripts": {
     "dev": "./setup.sh --start",
     "setup": "./setup.sh",
-    "start": "npm run build && concurrently \"npm run start:host\" \"npm run start:crm\" \"npm run start:inventory\" \"npm run start:hr\" \"npm run start:finance\" \"npm run start:task\"",
-    "serve:only": "concurrently \"npm run start:host\" \"npm run start:crm\" \"npm run start:inventory\" \"npm run start:hr\" \"npm run start:finance\" \"npm run start:task\"",
+    "start": "npm run build && concurrently \"npm run start:host\" \"npm run start:crm\" \"npm run start:inventory\" \"npm run start:hr\" \"npm run start:finance\" \"npm run start:task\" \"npm run start:health\"",
+    "serve:only": "concurrently \"npm run start:host\" \"npm run start:crm\" \"npm run start:inventory\" \"npm run start:hr\" \"npm run start:finance\" \"npm run start:task\" \"npm run start:health\"",
     "start:host": "(cd host && npm run preview)",
     "start:crm": "(cd apps/crm-module && npm run preview)",
     "start:inventory": "(cd apps/inventory-module && npm run preview)",
     "start:hr": "(cd apps/hr-module && npm run preview)",
     "start:finance": "(cd apps/finance-module && npm run preview)",
     "start:task": "(cd apps/task-module && npm run preview)",
+    "start:health": "(cd apps/health-module && npm run preview)",
     "build": "lerna run build",
     "build:shared": "lerna run build --scope='@shared/*'",
     "test": "lerna run test",
     "lint": "lerna run lint",
-    "kill-servers": "pkill -f 'vite.*--port.*(300[0-5])' || echo 'No development servers found'",
+    "kill-servers": "pkill -f 'vite.*--port.*(300[0-6])' || echo 'No development servers found'",
     "clean:all": "lerna clean --yes && find . -name 'node_modules' -type d -prune -exec rm -rf {} + && find . -name 'dist' -type d -prune -exec rm -rf {} +"
   },
   "devDependencies": {

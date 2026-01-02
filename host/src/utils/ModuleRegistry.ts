@@ -54,6 +54,16 @@ export function initializeModuleRegistry() {
     permissions: ['task.read', 'task.write']
   });
 
+  RuntimeModuleLoader.registerModule('health', {
+    name: 'health-app',
+    url: 'http://localhost:3006/assets/remoteEntry.js',
+    scope: 'health_app',
+    module: './App',
+    displayName: 'Health Module',
+    description: 'Healthcare management system connected to Evero',
+    permissions: ['health.read', 'health.write']
+  });
+
   // Module registry initialized
 }
 

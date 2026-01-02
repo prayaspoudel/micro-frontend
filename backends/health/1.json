@@ -1,0 +1,125 @@
+{
+  "companyId": "1",
+  "metrics": {
+    "totalPatients": 150,
+    "activePatients": 120,
+    "todayAppointments": 8,
+    "pendingAppointments": 12,
+    "totalContacts": 45,
+    "activeTreatments": 28,
+    "completedAppointmentsThisMonth": 95,
+    "patientSatisfactionScore": 4.6
+  },
+  "contacts": [
+    {
+      "id": "cont_001",
+      "firstName": "Emily",
+      "lastName": "Johnson",
+      "email": "emily.johnson@email.com",
+      "phone": "+1-555-1001",
+      "address": "123 Health St, Medical City, MC 10001",
+      "dateOfBirth": "1985-03-15",
+      "status": "active",
+      "assignedTo": "Dr. Sarah Smith",
+      "createdAt": "2024-01-10T10:00:00Z",
+      "lastVisit": "2024-12-15T14:30:00Z"
+    },
+    {
+      "id": "cont_002",
+      "firstName": "Michael",
+      "lastName": "Brown",
+      "email": "michael.brown@email.com",
+      "phone": "+1-555-1002",
+      "address": "456 Wellness Ave, Care City, CC 20002",
+      "dateOfBirth": "1978-07-22",
+      "status": "active",
+      "assignedTo": "Dr. John Davis",
+      "createdAt": "2024-02-05T09:15:00Z",
+      "lastVisit": "2024-12-20T11:00:00Z"
+    },
+    {
+      "id": "cont_003",
+      "firstName": "Sarah",
+      "lastName": "Williams",
+      "email": "sarah.williams@email.com",
+      "phone": "+1-555-1003",
+      "address": "789 Recovery Rd, Health Town, HT 30003",
+      "dateOfBirth": "1990-11-30",
+      "status": "active",
+      "assignedTo": "Dr. Sarah Smith",
+      "createdAt": "2024-03-12T13:45:00Z",
+      "lastVisit": "2024-12-28T16:20:00Z"
+    },
+    {
+      "id": "cont_004",
+      "firstName": "David",
+      "lastName": "Martinez",
+      "email": "david.martinez@email.com",
+      "phone": "+1-555-1004",
+      "address": "321 Treatment Blvd, Medicine City, MC 40004",
+      "dateOfBirth": "1982-05-18",
+      "status": "active",
+      "assignedTo": "Dr. John Davis",
+      "createdAt": "2024-04-20T10:30:00Z",
+      "lastVisit": "2025-01-02T09:00:00Z"
+    }
+  ],
+  "appointments": [
+    {
+      "id": "appt_001",
+      "patientId": "cont_001",
+      "patientName": "Emily Johnson",
+      "doctorName": "Dr. Sarah Smith",
+      "appointmentDate": "2025-01-03T10:00:00Z",
+      "duration": 30,
+      "type": "Consultation",
+      "status": "scheduled",
+      "notes": "Regular checkup"
+    },
+    {
+      "id": "appt_002",
+      "patientId": "cont_002",
+      "patientName": "Michael Brown",
+      "doctorName": "Dr. John Davis",
+      "appointmentDate": "2025-01-03T14:00:00Z",
+      "duration": 45,
+      "type": "Follow-up",
+      "status": "scheduled",
+      "notes": "Follow-up on treatment"
+    },
+    {
+      "id": "appt_003",
+      "patientId": "cont_003",
+      "patientName": "Sarah Williams",
+      "doctorName": "Dr. Sarah Smith",
+      "appointmentDate": "2025-01-04T09:00:00Z",
+      "duration": 60,
+      "type": "Treatment",
+      "status": "scheduled",
+      "notes": "Physical therapy session"
+    }
+  ],
+  "recentActivity": [
+    {
+      "id": "act_001",
+      "type": "appointment_completed",
+      "description": "Completed appointment with Emily Johnson",
+      "timestamp": "2024-12-15T14:30:00Z",
+      "userId": "Dr. Sarah Smith"
+    },
+    {
+      "id": "act_002",
+      "type": "new_patient",
+      "description": "New patient registration: David Martinez",
+      "timestamp": "2024-04-20T10:30:00Z",
+      "userId": "Admin"
+    },
+    {
+      "id": "act_003",
+      "type": "appointment_scheduled",
+      "description": "Scheduled appointment for Michael Brown",
+      "timestamp": "2024-12-20T11:00:00Z",
+      "userId": "Dr. John Davis"
+    }
+  ]
+}

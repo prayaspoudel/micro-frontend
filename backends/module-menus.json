@@ -1058,5 +1058,52 @@
         ]
       }
     ]
+  },
+  "health": {
+    "moduleId": "health",
+    "moduleName": "Healthcare Management",
+    "menus": [
+      {
+        "id": "dashboard",
+        "label": "Dashboard",
+        "path": "/",
+        "icon": "HomeIcon",
+        "order": 1
+      },
+      {
+        "id": "patients",
+        "label": "Patient Management",
+        "icon": "UsersIcon",
+        "order": 2,
+        "children": [
+          {
+            "id": "patient-list",
+            "label": "View Patients",
+            "path": "/patients",
+            "order": 1
+          },
+          {
+            "id": "patient-details",
+            "label": "Patient Details",
+            "path": "/patients/:id",
+            "order": 2
+          }
+        ]
+      },
+      {
+        "id": "contacts",
+        "label": "Contacts",
+        "icon": "PhoneIcon",
+        "path": "/contacts",
+        "order": 3
+      },
+      {
+        "id": "appointments",
+        "label": "Appointments",
+        "icon": "CalendarIcon",
+        "path": "/appointments",
+        "order": 4
+      }
+    ]
   }
 }
