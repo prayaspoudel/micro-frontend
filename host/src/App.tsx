@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { useAuthStore, useAppStore } from '@shared/state';
 import Layout from './components/Layout/Layout';
 import LoginPage from './pages/LoginPage';
+import SSOCallback from './pages/SSOCallback';
 import Dashboard from './pages/Dashboard';
 import CompanyProfile from './pages/CompanyProfile';
 import SearchResults from './pages/SearchResults';
@@ -37,6 +38,12 @@ function App() {
           <Route 
             path="/login" 
             element={!isAuthenticated ? <LoginPage /> : <Navigate to="/dashboard" replace />} 
+          />
+          
+          {/* SSO Callback Route */}
+          <Route 
+            path="/callback" 
+            element={<SSOCallback />} 
           />
           
           <Route path="/" element={<ProtectedRoute />}>
