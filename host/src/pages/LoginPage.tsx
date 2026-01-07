@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Navigate } from 'react-router-dom';
 import { useAuthStore } from '@shared/state';
-import { Button } from '@shared/ui-components';
+import { Button, SSOLoginButton, SSOError } from '@shared/ui-components';
+import { isSSOEnabled, getSSOConfig } from '@shared/utils';
 
 const LoginContainer = styled.div`
   min-height: 100vh;
@@ -69,10 +70,47 @@ const ErrorMessage = styled.div`
   margin-top: ${props => props.theme.spacing.sm};
 `;
 
+const Divider = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: ${props => props.theme.spacing.lg} 0;
+  
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid ${props => props.theme.colors.gray[300]};
+  }
+  
+  &::before {
+    margin-right: ${props => props.theme.spacing.md};
+  }
+  
+  &::after {
+    margin-left: ${props => props.theme.spacing.md};
+  }
+`;
+
+const DividerText = styled.span`
+  color: ${props => props.theme.colors.text.secondary};
+  font-size: ${props => props.theme.typography.fontSize.sm};
+`;
+
+const SSOButtonGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${props => props.theme.spacing.md};
+`;
+
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('admin@techcorp.com');
   const [password, setPassword] = useState('password123');
-  const { login, isLoading, error, isAuthenticated } = useAuthStore();
+  const [ssoError, setSSOError] = useState<string | null>(null);
+  const { login, loginWithSSO, isLoading, error, isAuthenticated } = useAuthStore();
+  
+  const ssoEnabled = isSSOEnabled();
+  const ssoConfig = ssoEnabled ? getSSOConfig() : null;
 
   if (isAuthenticated) {
     return <Navigate to="/dashboard" replace />;
@@ -83,10 +121,38 @@ const LoginPage: React.FC = () => {
     await login(email, password);
   };
 
+  const handleSSOLogin = async () => {
+    setSSOError(null);
+    try {
+      await loginWithSSO();
+    } catch (err) {
+      setSSOError(err instanceof Error ? err.message : 'SSO login failed');
+    }
+  };
+
   return (
     <LoginContainer>
       <LoginCard>
         <Title>Login</Title>
+        
+        {ssoError && <SSOError error={ssoError} onRetry={handleSSOLogin} />}
+        
+        {ssoEnabled && ssoConfig && (
+          <>
+            <SSOButtonGroup>
+              <SSOLoginButton
+                provider={ssoConfig.provider}
+                onClick={handleSSOLogin}
+                disabled={isLoading}
+              />
+            </SSOButtonGroup>
+            
+            <Divider>
+              <DividerText>or continue with email</DividerText>
+            </Divider>
+          </>
+        )}
+        
         <Form onSubmit={handleSubmit}>
           <InputGroup>
             <Label htmlFor="email">Email</Label>
