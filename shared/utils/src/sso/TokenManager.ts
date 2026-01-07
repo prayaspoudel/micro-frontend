@@ -18,6 +18,10 @@ export class TokenManager {
 
   /**
    * Store tokens securely
+   * WARNING: localStorage is vulnerable to XSS attacks. In production:
+   * - Consider using httpOnly cookies (requires backend support)
+   * - Implement Content Security Policy (CSP)
+   * - Use proper XSS sanitization throughout the application
    */
   storeTokens(tokens: SSOTokens): void {
     const expiresAt = Date.now() + tokens.expiresIn * 1000;
@@ -27,7 +31,7 @@ export class TokenManager {
     };
     
     try {
-      // Store in localStorage (in production, consider httpOnly cookies)
+      // Store in localStorage (see security warning above)
       localStorage.setItem(TOKEN_STORAGE_KEY, JSON.stringify(tokensWithExpiry));
       
       // Broadcast token update to other tabs
@@ -140,6 +144,8 @@ export class TokenManager {
 
   /**
    * Decode JWT token (without verification)
+   * NOTE: This only validates token structure, not signature
+   * Do NOT use for security decisions - tokens must be validated server-side
    */
   decodeToken(token: string): any {
     try {

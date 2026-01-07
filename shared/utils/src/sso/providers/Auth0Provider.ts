@@ -124,6 +124,9 @@ export class Auth0Provider extends BaseProvider {
 
     const data = await response.json();
 
+    // Use configurable namespace or default
+    const namespace = this.config.customClaimsNamespace || 'https://your-app.com';
+
     // Map Auth0 user data to SSOUser format
     return {
       id: data.sub,
@@ -132,8 +135,8 @@ export class Auth0Provider extends BaseProvider {
       lastName: data.family_name || data.name?.split(' ')[1] || '',
       name: data.name || data.email,
       picture: data.picture,
-      roles: data['https://your-app.com/roles'] || [],
-      permissions: data['https://your-app.com/permissions'] || [],
+      roles: data[`${namespace}/roles`] || [],
+      permissions: data[`${namespace}/permissions`] || [],
     };
   }
 

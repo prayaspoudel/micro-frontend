@@ -148,10 +148,27 @@ export class OktaProvider extends BaseProvider {
 
   async logout(): Promise<void> {
     const logoutUrl = this.getLogoutEndpoint();
+    
+    // Try to get ID token from storage for proper logout
+    let idToken = '';
+    try {
+      const tokensStr = localStorage.getItem('sso_tokens');
+      if (tokensStr) {
+        const tokens = JSON.parse(tokensStr);
+        idToken = tokens.idToken || '';
+      }
+    } catch (error) {
+      console.warn('Could not retrieve ID token for logout');
+    }
+    
     const params = new URLSearchParams({
-      id_token_hint: '', // Should pass ID token if available
       post_logout_redirect_uri: this.config.logoutRedirectUri,
     });
+    
+    // Only add id_token_hint if we have one
+    if (idToken) {
+      params.set('id_token_hint', idToken);
+    }
 
     window.location.href = `${logoutUrl}?${params.toString()}`;
   }

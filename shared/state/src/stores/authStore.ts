@@ -242,13 +242,16 @@ export const useAuthStore = create<AuthState & AuthActions>()(
             state.ssoProvider = authMode === 'sso' ? localStorage.getItem('sso_provider') || undefined : undefined;
           });
           
-          // If SSO mode, validate session
+          // If SSO mode, validate session (async check to avoid blocking init)
+          // Note: This performs local token validation, not a network request
           if (authMode === 'sso') {
             import('@shared/utils').then(({ ssoService }) => {
               ssoService.validateSession().then(isValid => {
                 if (!isValid) {
                   get().logout();
                 }
+              }).catch(err => {
+                console.error('Session validation error:', err);
               });
             });
           }

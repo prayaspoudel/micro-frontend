@@ -16,6 +16,7 @@ export interface SSOConfig {
   usePKCE: boolean;
   tokenRefreshInterval: number; // milliseconds
   sessionTimeout: number; // milliseconds
+  customClaimsNamespace?: string; // For custom claims (e.g., Auth0 roles)
 }
 
 export interface SSOTokens {

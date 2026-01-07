@@ -23,6 +23,7 @@ export function getSSOConfig(): SSOConfig {
     usePKCE: import.meta.env.VITE_SSO_USE_PKCE === 'true' || true,
     tokenRefreshInterval: parseInt(import.meta.env.VITE_SSO_TOKEN_REFRESH_INTERVAL || '300000', 10),
     sessionTimeout: parseInt(import.meta.env.VITE_SSO_SESSION_TIMEOUT || '3600000', 10),
+    customClaimsNamespace: import.meta.env.VITE_SSO_CUSTOM_CLAIMS_NAMESPACE || undefined,
   };
 }
 
