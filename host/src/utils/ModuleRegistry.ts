@@ -91,7 +91,7 @@ export class ModulePreloader {
   }
 
   static async preloadAllModules(): Promise<void> {
-    const modules = ['crm', 'inventory', 'hr', 'finance', 'task'];
+    const modules = ['crm', 'inventory', 'hr', 'finance', 'task', 'health'];
     const preloadPromises = modules.map(module => this.preloadModule(module));
     
     await Promise.allSettled(preloadPromises);

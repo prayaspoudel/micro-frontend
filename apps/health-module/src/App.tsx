@@ -52,17 +52,14 @@ const HealthApp = ({ basename }: HealthAppProps) => {
 
   if (isStandalone) {
     return (
-      <BrowserRouter>
+      <BrowserRouter basename="/health">
         <AppContent />
       </BrowserRouter>
     );
   }
 
-  return (
-    <BrowserRouter basename={basename}>
-      <AppContent />
-    </BrowserRouter>
-  );
+  // When embedded in host, just return content (host router handles navigation)
+  return <AppContent />;
 };
 
 export default HealthApp;

@@ -32,6 +32,11 @@ export const AVAILABLE_MODULES: ModuleDefinition[] = [
     id: 'task', 
     name: 'Task', 
     description: 'Jira-style Task Management System' 
+  },
+  { 
+    id: 'health', 
+    name: 'Health', 
+    description: 'Healthcare Management' 
   }
 ];
 

@@ -54,7 +54,7 @@
     "description": "Comprehensive healthcare services provider with multiple clinics and specialized medical centers.",
     "logo": "https://placehold.co/150x150?text=HealthCare+",
     "status": "active",
-    "modules": ["hr", "finance", "task"],
+    "modules": ["hr", "finance", "task", "health"],
     "subscription": {
       "plan": "healthcare",
       "startDate": "2024-02-01",
